@@ -1,0 +1,12 @@
+﻿@model ABC.ViewModels.ExamViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div>
+    @Html.Partial("_ExamList", Model.ExamListModel)
+</div>

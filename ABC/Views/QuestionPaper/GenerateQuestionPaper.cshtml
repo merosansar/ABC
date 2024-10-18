@@ -1,0 +1,92 @@
+﻿@model ABC.ViewModels.GenerateQuestionPaperViewModel
+
+@{
+    ViewBag.Title = "Generate Random Question Paper";
+}
+<a href="~/fonts/Preeti Normal.otf"></a>
+
+<style>
+
+
+    #ExamIdNepali {
+        font-family: 'Preeti', Arial, sans-serif;
+        font-size: 20px;
+    }
+</style>
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("GenerateQuestionPaper", "QuestionPaper", FormMethod.Post, new { id = "generateForm", target = "_blank" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumberOfQuestions)
+        @Html.TextBoxFor(model => model.NumberOfQuestions, new { @class = "form-control", @VAlue = "2" })
+        @Html.ValidationMessageFor(model => model.NumberOfQuestions)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PaperTitle)
+        @Html.TextBoxFor(model => model.PaperTitle, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.PaperTitle)
+    </div>
+    <div class="form-group">
+        @Html.DropDownList("ExamId", ABC.Models.Dropdown.DropDownListData("ExamType", null, false), new { @class = "form-control" })
+        @Html.DropDownList("ExamId", ABC.Models.Dropdown.DropDownListData("ExamType", null, true), new { @class = "form-control", @id = "ExamIdNepali", @style = "display:none; font-size: 18px;" })
+        @Html.Hidden("ExamName")
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.PaperDescription)
+        @Html.TextAreaFor(model => model.PaperDescription, new { @class = "form-control", rows = 4 })
+        @Html.ValidationMessageFor(model => model.PaperDescription)
+    </div>
+    <div class="form-group">
+        @Html.Label("IsNepali ")
+        @Html.CheckBox("checkboxIsNepali", new { @id = "chIsNepali" })
+        @Html.HiddenFor(model => model.IsNepali)
+    </div>
+    <button type="submit" class="btn btn-success" id="generateButton">Generate Paper</button>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            var checkval = $("#chIsNepali").is(":checked");
+            $("#IsNepali").val(checkval);
+            document.getElementById("NumberOfQuestions").readOnly = true;
+
+            /*  $(function () {*/
+
+            $('#ExamId').change(function () {
+                var selectedText = $('#ExamId option:selected').text().trim();
+                $('#ExamName').val(selectedText)
+
+            });
+            $('#ExamIdNepali').change(function () {
+                var selectName = $('#ExamIdNepali option:selected').text().trim();
+
+                $('#ExamName').val(selectName)
+
+            });
+
+            $("#chIsNepali").change(function () {
+
+                var checkval = $("#chIsNepali").is(":checked");
+                $("#IsNepali").val(checkval);
+                if ($(this).is(":checked")) {
+                    $("#ExamIdNepali").show(); // Remove display: none;
+                    $("#ExamId").hide();
+
+                }
+                else {
+                    $("#ExamIdNepali").hide(); // Remove display: none;
+                    $("#ExamId").show();
+
+                }
+
+            });
+
+        });
+
+    </script>
+}

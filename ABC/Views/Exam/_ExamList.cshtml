@@ -1,0 +1,47 @@
+﻿@model IEnumerable<sAddExam_Result>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" border="1">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ExamName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CraetedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+     
+        @*<th>
+            @Html.DisplayNameFor(model => model.IsNepali)
+        </th>*@
+        <th>Operation</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExamName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CraetedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+      
+        @*<td>
+            @Html.DisplayFor(modelItem => item.IsNepali)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

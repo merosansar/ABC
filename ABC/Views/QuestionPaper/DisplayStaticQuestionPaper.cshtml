@@ -1,0 +1,210 @@
+﻿
+@model List<ABC.GetQuestionPaper_Result>
+
+
+@{
+    ViewBag.Title = "DisplayStaticQuestionPaper";
+    Layout = null;
+    var IsNepali = TempData["IsNepali"].ToString();
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 5px;
+        }
+
+        .question-paper {
+            background-color: #fff;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .options {
+            margin-left: 20px;
+        }
+
+        .option {
+            margin-bottom: 5px;
+        }
+
+            .option input[type="radio"] {
+                margin-right: 10px;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="question-paper">
+        <div class="question">
+            <table>
+                <tr>
+                    <td style="text-align:center;" colspan="12">लेाक सेवा आयेाग </td>
+
+                </tr>
+                <tr>
+                    <td style="text-align:center;" colspan="12">राष्ट्रिय  वाणिज्य  बैक  लिमिटेड ,प्रशासन ,  सूचना  प्रविधि , पाचैाँ , वरिष्ठ  सहायक  ( सूचना प्रविधि ) पदकेा   </td>
+
+                </tr>
+
+                <tr>
+                    <td style="text-align:center;" colspan="12">खुला प्रतियेागितात्म  लिखित  परिक्षा </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;" colspan="12">२०८१-०१-१२ </td>
+                </tr>
+                <tr>
+
+                    <td style="float:left;width:50%;" colspan="12">
+                        पत्र:   दि्तीय <br />
+                        समय: ३ घण्टा<br />  <br />
+                    </td>
+
+                    <td colspan="12" style="width:50%;"><span style="float:right;width:90px;"><br /> पूणांङ्क : १०० </span><br /><br /> </td>
+
+                </tr>
+                <tr>
+                    <td style="text-align:center;width:100%;">बिषय : बैकिङ् ,  लेखा  तथा  ब्यबस्थापन  <br />  <br /> </td>
+                </tr>
+                <tr>
+                    <td style="border-style:solid;padding:5px;text-align:center; " colspan="12">
+                        प्रत्येक  खण्डकेा  उत्तर   छुट्टाछुट्टै   उत्तरपुस्तिकामा लेख्नुपर्नेछ   |   अन्यथा  उत्तर  पुष्तिका  रद्ध्  हुनेछ  |
+
+                    </td>
+                </tr>
+            </table><br />
+            <br />
+            @if (IsNepali == "True")
+            {<table style="width:100%;">
+                    <tr>
+                        <td style="width:50%;" colspan="12"> <span style="float:right;"> खण्ड  "क"</span></td>
+                        <td style="width:50%;" colspan="12"> <span style="float:right;"> ६० अङ्क </span></td>
+
+                    </tr>
+
+
+                </table><br />
+                <br />
+            }
+            else
+            {
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:50%;" colspan="12"> <span style="float:right;"> Section "A"</span></td>
+                        <td style="width:50%;" colspan="12"> <span style="float:right;"> 60 Marks </span></td>
+
+                    </tr>
+
+                </table><br />
+                <br />
+
+
+
+
+            }
+
+            @if (Model.Count() > 0)
+            {
+                int i = 0;
+                if (Model.Count() >= 6)
+                {
+
+
+                    foreach (var item in Model)
+                    {
+
+                        i++;
+
+                        <div> @i.   @Html.DisplayFor(modelItem => item.Name)</div> <br /><br />
+                        if (i == 6)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+
+                    }
+                }
+
+                if (IsNepali == "True")
+                {
+                    <table style="width:100%;">
+
+
+                        <tr>
+                            <td style="width:50%;" colspan="12"> <span style="float:right;"> खण्ड  "ख"</span></td>
+                            <td style="width:50%;" colspan="12"> <span style="float:right;"> ४० अङ्क </span></td>
+
+                        </tr>
+                    </table><br /> <br />
+                }
+                else
+                {
+
+                    <table style="width:100%;">
+
+
+                        <tr>
+                            <td style="width:50%;" colspan="12"> <span style="float:right;"> Section "B" </span></td>
+                            <td style="width:50%;" colspan="12"> <span style="float:right;"> 40 Marks</span></td>
+
+                        </tr>
+                    </table><br /> <br />
+
+
+
+
+                }
+                if (i == 6)
+                {
+                    int j = 0;
+
+                    foreach (var item in Model)
+                    {
+                        j++;
+                        if (j >= 7)
+                        {
+
+                            i++;
+
+                            <div> @i.   @Html.DisplayFor(modelItem => item.Name)</div> <br />
+
+                            if (i == 10)
+                            {
+                                break;
+                            }
+                        }
+                    }
+
+
+                }
+            }<br /><br />
+            <table style="width:100%;">
+
+                <tr>
+                    <td style="width:50%;" colspan="12"> <span style="float:right;">  :: समाप्त  :: </span></td>
+                    <td style="width:50%;text-align:right;" colspan="12"> <span>   </span></td>
+
+                </tr>
+
+
+            </table>
+        </div>
+    </div>
+</body>
+</html>

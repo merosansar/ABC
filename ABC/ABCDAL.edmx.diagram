@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="96820a1f164249e1b0ccf931856c6a09" Name="Diagram1" ZoomLevel="105">
+        <EntityTypeShape EntityType="ABCModel.Paper" Width="1.5" PointX="8.625" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABCModel.Question" Width="2.625" PointX="2.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABCModel.Question1" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABCModel.Subject" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABCModel.Topic" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ABCModel.QuestionPaper" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="ABCModel.FK__Topics__SubjectI__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="ABCModel.QuestionPaperQuestions" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ABCModel.Exam" Width="1.5" PointX="1.75" PointY="11.5" />
+        <AssociationConnector Association="ABCModel.FK_Subjects_Exams" />
+        <EntityTypeShape EntityType="ABCModel.Country_" Width="1.5" PointX="18.25" PointY="9" />
+        <EntityTypeShape EntityType="ABCModel.District" Width="1.5" PointX="11.75" PointY="8.75" />
+        <EntityTypeShape EntityType="ABCModel.Gender" Width="1.5" PointX="8.25" PointY="16.125" />
+        <EntityTypeShape EntityType="ABCModel.Provinces_" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="ABCModel.UserType" Width="1.5" PointX="8.25" PointY="13" />
+        <EntityTypeShape EntityType="ABCModel.Zone" Width="1.5" PointX="3" PointY="7.25" />
+        <AssociationConnector Association="ABCModel.FK__Provinces__Count__0C50D423" />
+        <AssociationConnector Association="ABCModel.FK__District__ZoneId__3EDC53F0" />
+        <AssociationConnector Association="ABCModel.FK__Zone__ProvinceId__2EA5EC27" />
+        <EntityTypeShape EntityType="ABCModel.User" Width="1.5" PointX="20.5" PointY="10.25" />
+        <AssociationConnector Association="ABCModel.FK__User__CountryId__17C286CF" />
+        <AssociationConnector Association="ABCModel.FK__User__DistrictId__40C49C62" />
+        <AssociationConnector Association="ABCModel.FK__User__GenderId__1B9317B3" />
+        <AssociationConnector Association="ABCModel.FK__User__ProvinceId__18B6AB08" />
+        <AssociationConnector Association="ABCModel.FK__User__UserTypeId__1C873BEC" />
+        <AssociationConnector Association="ABCModel.FK__User__ZoneId__3FD07829" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

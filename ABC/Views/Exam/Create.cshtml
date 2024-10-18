@@ -1,0 +1,72 @@
+﻿@model ABC.Exam
+
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+<style>
+    #NepaliExamName {
+        font-family: 'Preeti', Arial, sans-serif;
+        font-size: 20px;
+    }
+</style>
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Exam</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group" style="margin-bottom:0px;">
+            @Html.LabelFor(model => model.ExamName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.ExamName, new { htmlAttributes = new { @class = "form-control", @id = "NepaliExamName", @style = "display:none;" } })
+                @Html.EditorFor(model => model.ExamName, new { htmlAttributes = new { @class = "form-control", @id = "EnglishExamName" } })
+                @Html.ValidationMessageFor(model => model.ExamName, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+        <div class="form-group" style="margin-bottom:0px;">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                @Html.Label("IsNepali ")
+                @Html.CheckBox("IsNepali")
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $("#IsNepali").change(function () {
+                if ($(this).is(":checked")) {
+                    $("#NepaliExamName").show(); // Remove display: none;
+                    $("#EnglishExamName").hide();
+                } else {
+                    $("#EnglishExamName").show();
+                    $("#NepaliExamName").hide(); // Add display: none;
+                }
+            });
+        });
+    </script>
+}

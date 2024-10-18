@@ -1,0 +1,1813 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ABCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Country ">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="70" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="70" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="70" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="70" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="ZoneId" Type="int" />
+        </EntityType>
+        <EntityType Name="Exam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExamName" Type="nvarchar" MaxLength="300" />
+          <Property Name="CraetedBy" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="300" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="IsNepali" Type="bit" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="70" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="70" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Paper">
+          <Key>
+            <PropertyRef Name="PaperId" />
+          </Key>
+          <Property Name="PaperId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaperTitle" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="SubjectID" Type="int" />
+          <Property Name="TopicId" Type="int" />
+          <Property Name="IsNepali" Type="bit" />
+        </EntityType>
+        <EntityType Name="Provinces ">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="70" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="70" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="CountryId" Type="int" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Marks" Type="int" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="70" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="70" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="TopicID" Type="int" />
+          <Property Name="IsNepali" Type="bit" />
+        </EntityType>
+        <EntityType Name="QuestionPaper">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaperId" Type="int" />
+          <Property Name="QuestionId" Type="int" />
+          <Property Name="SubjectId" Type="int" />
+          <Property Name="TopicId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="ExamId" Type="int" />
+          <Property Name="IsNepali" Type="bit" />
+        </EntityType>
+        <EntityType Name="QuestionPaperQuestions">
+          <Key>
+            <PropertyRef Name="PaperId" />
+            <PropertyRef Name="QuestionId" />
+          </Key>
+          <Property Name="PaperId" Type="int" Nullable="false" />
+          <Property Name="QuestionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Marks" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="70" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Subjects">
+          <Key>
+            <PropertyRef Name="SubjectID" />
+          </Key>
+          <Property Name="SubjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubjectName" Type="nvarchar" MaxLength="300" />
+          <Property Name="ExamId" Type="int" />
+          <Property Name="IsNepali" Type="bit" />
+        </EntityType>
+        <EntityType Name="Topics">
+          <Key>
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="TopicID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TopicName" Type="nvarchar" MaxLength="300" />
+          <Property Name="IsNepali" Type="bit" />
+          <Property Name="SubjectID" Type="int" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="ProfilePicture" Type="nvarchar" MaxLength="255" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="ProvinceId" Type="int" />
+          <Property Name="GenderId" Type="int" />
+          <Property Name="UserTypeId" Type="int" />
+          <Property Name="ZoneId" Type="int" />
+          <Property Name="DistrictId" Type="int" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="70" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="70" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Zone">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="70" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="70" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="ProvinceId" Type="int" />
+        </EntityType>
+        <Association Name="FK__District__ZoneId__3EDC53F0">
+          <End Role="Zone" Type="Self.Zone" Multiplicity="0..1" />
+          <End Role="District" Type="Self.District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zone">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="ZoneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Provinces__Count__0C50D423">
+          <End Role="Country " Type="Self.Country " Multiplicity="0..1" />
+          <End Role="Provinces " Type="Self.Provinces " Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country ">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Provinces ">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Topics__SubjectI__6ABAD62E">
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="0..1" />
+          <End Role="Topics" Type="Self.Topics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="SubjectID" />
+            </Principal>
+            <Dependent Role="Topics">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__CountryId__17C286CF">
+          <End Role="Country " Type="Self.Country " Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country ">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__DistrictId__40C49C62">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__GenderId__1B9317B3">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__ProvinceId__18B6AB08">
+          <End Role="Provinces " Type="Self.Provinces " Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provinces ">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__UserTypeId__1C873BEC">
+          <End Role="UserType" Type="Self.UserType" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__ZoneId__3FD07829">
+          <End Role="Zone" Type="Self.Zone" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zone">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ZoneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zone__ProvinceId__2EA5EC27">
+          <End Role="Provinces " Type="Self.Provinces " Multiplicity="0..1" />
+          <End Role="Zone" Type="Self.Zone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provinces ">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zone">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaperId">
+          <End Role="Paper" Type="Self.Paper" Multiplicity="1" />
+          <End Role="QuestionPaperQuestions" Type="Self.QuestionPaperQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paper">
+              <PropertyRef Name="PaperId" />
+            </Principal>
+            <Dependent Role="QuestionPaperQuestions">
+              <PropertyRef Name="PaperId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionId">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="QuestionPaperQuestions" Type="Self.QuestionPaperQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionPaperQuestions">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subjects_Exams">
+          <End Role="Exam" Type="Self.Exam" Multiplicity="0..1" />
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exam">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Subjects">
+              <PropertyRef Name="ExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AddExam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Operation" Type="char" Mode="In" />
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="ExamName" Type="nvarchar" Mode="In" />
+          <Parameter Name="CreatedBy" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsNepali" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="AddSubject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Operation" Type="char" Mode="In" />
+          <Parameter Name="SubjectID" Type="int" Mode="In" />
+          <Parameter Name="SubjectName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ExamId" Type="int" Mode="In" />
+          <Parameter Name="IsNepali" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="AddTopic" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Operation" Type="char" Mode="In" />
+          <Parameter Name="TopicID" Type="int" Mode="In" />
+          <Parameter Name="TopicName" Type="nvarchar" Mode="In" />
+          <Parameter Name="SubjectID" Type="int" Mode="In" />
+          <Parameter Name="IsNepali" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="FnResponse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Status" Type="varchar" Mode="In" />
+          <Parameter Name="Code" Type="varchar" Mode="In" />
+          <Parameter Name="Message" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Status" Type="varchar" MaxLength="100" />
+                <Property Name="Code" Type="varchar" MaxLength="20" />
+                <Property Name="Message" Type="varchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GenerateRandomQuestionPaper" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Flag" Type="char" Mode="In" />
+          <Parameter Name="NumberOfQuestions" Type="int" Mode="In" />
+          <Parameter Name="PaperTitle" Type="nvarchar" Mode="In" />
+          <Parameter Name="PaperDescription" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="ExamName" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsNepali" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="GetQuestionPaper" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PaperId" Type="int" Mode="In" />
+          <Parameter Name="IsNepali" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="LoadDropdownList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchText" Type="varchar" Mode="In" />
+          <Parameter Name="SearchId" Type="int" Mode="In" />
+          <Parameter Name="IsNepali" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="ManageQuestion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Operation" Type="varchar" Mode="In" />
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Marks" Type="int" Mode="In" />
+          <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
+          <Parameter Name="CreatedDate" Type="datetime" Mode="In" />
+          <Parameter Name="UpdatedBy" Type="varchar" Mode="In" />
+          <Parameter Name="UpdatedDate" Type="datetime" Mode="In" />
+          <Parameter Name="IsNepali" Type="bit" Mode="In" />
+          <Parameter Name="TopicID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UserAuthentication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsAuthenticated" Type="char" Mode="In" />
+        </Function>
+        <Function Name="UserInsertUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Action" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="PasswordHash" Type="nvarchar" Mode="In" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="DateOfBirth" Type="date" Mode="In" />
+          <Parameter Name="GenderId" Type="int" Mode="In" />
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar" Mode="In" />
+          <Parameter Name="CountryId" Type="int" Mode="In" />
+          <Parameter Name="ProvinceId" Type="int" Mode="In" />
+          <Parameter Name="ZoneId" Type="int" Mode="In" />
+          <Parameter Name="DistrictId" Type="int" Mode="In" />
+          <Parameter Name="UserTypeId" Type="int" Mode="In" />
+          <Parameter Name="ProfilePicture" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ABCModelStoreContainer">
+          <EntitySet Name="Country " EntityType="Self.Country " Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exam" EntityType="Self.Exam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paper" EntityType="Self.Paper" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provinces " EntityType="Self.Provinces " Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionPaper" EntityType="Self.QuestionPaper" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionPaperQuestions" EntityType="Self.QuestionPaperQuestions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Topics" EntityType="Self.Topics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zone" EntityType="Self.Zone" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__District__ZoneId__3EDC53F0" Association="Self.FK__District__ZoneId__3EDC53F0">
+            <End Role="Zone" EntitySet="Zone" />
+            <End Role="District" EntitySet="District" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Provinces__Count__0C50D423" Association="Self.FK__Provinces__Count__0C50D423">
+            <End Role="Country " EntitySet="Country " />
+            <End Role="Provinces " EntitySet="Provinces " />
+          </AssociationSet>
+          <AssociationSet Name="FK__Topics__SubjectI__6ABAD62E" Association="Self.FK__Topics__SubjectI__6ABAD62E">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Topics" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__CountryId__17C286CF" Association="Self.FK__User__CountryId__17C286CF">
+            <End Role="Country " EntitySet="Country " />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__DistrictId__40C49C62" Association="Self.FK__User__DistrictId__40C49C62">
+            <End Role="District" EntitySet="District" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__GenderId__1B9317B3" Association="Self.FK__User__GenderId__1B9317B3">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__ProvinceId__18B6AB08" Association="Self.FK__User__ProvinceId__18B6AB08">
+            <End Role="Provinces " EntitySet="Provinces " />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__UserTypeId__1C873BEC" Association="Self.FK__User__UserTypeId__1C873BEC">
+            <End Role="UserType" EntitySet="UserType" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__ZoneId__3FD07829" Association="Self.FK__User__ZoneId__3FD07829">
+            <End Role="Zone" EntitySet="Zone" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zone__ProvinceId__2EA5EC27" Association="Self.FK__Zone__ProvinceId__2EA5EC27">
+            <End Role="Provinces " EntitySet="Provinces " />
+            <End Role="Zone" EntitySet="Zone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaperId" Association="Self.FK_PaperId">
+            <End Role="Paper" EntitySet="Paper" />
+            <End Role="QuestionPaperQuestions" EntitySet="QuestionPaperQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionId" Association="Self.FK_QuestionId">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionPaperQuestions" EntitySet="QuestionPaperQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subjects_Exams" Association="Self.FK_Subjects_Exams">
+            <End Role="Exam" EntitySet="Exam" />
+            <End Role="Subjects" EntitySet="Subjects" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ABCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Paper">
+          <Key>
+            <PropertyRef Name="PaperId" />
+          </Key>
+          <Property Name="PaperId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaperTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="SubjectID" Type="Int32" />
+          <Property Name="TopicId" Type="Int32" />
+          <NavigationProperty Name="Questions" Relationship="Self.QuestionPaperQuestions" FromRole="Paper" ToRole="Question" />
+          <Property Name="IsNepali" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Marks" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="TopicID" Type="Int32" />
+          <NavigationProperty Name="Papers" Relationship="Self.QuestionPaperQuestions" FromRole="Question" ToRole="Paper" />
+          <Property Name="IsNepali" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Question1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Marks" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="SubjectID" />
+          </Key>
+          <Property Name="SubjectID" Type="Int32" Nullable="false" />
+          <Property Name="SubjectName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Topics" Relationship="Self.FK__Topics__SubjectI__5EBF139D" FromRole="Subjects" ToRole="Topics" />
+          <Property Name="ExamId" Type="Int32" />
+          <Property Name="IsNepali" Type="Boolean" />
+          <NavigationProperty Name="Exam" Relationship="ABCModel.FK_Subjects_Exams" FromRole="Subject" ToRole="Exam1" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="TopicID" Type="Int32" Nullable="false" />
+          <Property Name="TopicName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectID" Type="Int32" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK__Topics__SubjectI__5EBF139D" FromRole="Topics" ToRole="Subjects" />
+          <Property Name="IsNepali" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="QuestionPaper">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaperId" Type="Int32" />
+          <Property Name="QuestionId" Type="Int32" />
+          <Property Name="SubjectId" Type="Int32" />
+          <Property Name="TopicId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ExamId" Type="Int32" />
+          <Property Name="IsNepali" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK__Topics__SubjectI__5EBF139D">
+          <End Role="Subjects" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="Topics" Type="Self.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="SubjectID" />
+            </Principal>
+            <Dependent Role="Topics">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="QuestionPaperQuestions">
+          <End Role="Paper" Type="Self.Paper" Multiplicity="*" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ABCEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Papers" EntityType="Self.Paper" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="Questions1" EntityType="Self.Question1" />
+          <EntitySet Name="Subjects" EntityType="Self.Subject" />
+          <EntitySet Name="Topics" EntityType="Self.Topic" />
+          <EntitySet Name="QuestionPapers" EntityType="Self.QuestionPaper" />
+          <AssociationSet Name="FK__Topics__SubjectI__5EBF139D" Association="Self.FK__Topics__SubjectI__5EBF139D">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Topics" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="QuestionPaperQuestions" Association="Self.QuestionPaperQuestions">
+            <End Role="Paper" EntitySet="Papers" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <FunctionImport Name="ManageQuestion" ReturnType="Collection(ABCModel.ManageQuestion_Result)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Marks" Mode="In" Type="Int32" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+            <Parameter Name="CreatedDate" Mode="In" Type="DateTime" />
+            <Parameter Name="UpdatedBy" Mode="In" Type="String" />
+            <Parameter Name="UpdatedDate" Mode="In" Type="DateTime" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+            <Parameter Name="TopicID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="LoadDropdownList" ReturnType="Collection(ABCModel.LoadDropdownList_Result)">
+            <Parameter Name="SearchText" Mode="In" Type="String" />
+            <Parameter Name="SearchId" Mode="In" Type="Int32" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="AddExam" ReturnType="Collection(String)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="ExamName" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="AddSubject" ReturnType="Collection(ABCModel.AddSubject_Result)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="SubjectID" Mode="In" Type="Int32" />
+            <Parameter Name="SubjectName" Mode="In" Type="String" />
+            <Parameter Name="ExamId" Mode="In" Type="Int32" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="AddTopic" ReturnType="Collection(String)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="TopicID" Mode="In" Type="Int32" />
+            <Parameter Name="TopicName" Mode="In" Type="String" />
+            <Parameter Name="SubjectID" Mode="In" Type="Int32" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <EntitySet Name="Exams" EntityType="ABCModel.Exam" />
+          <AssociationSet Name="FK_Subjects_Exams" Association="ABCModel.FK_Subjects_Exams">
+            <End Role="Exam1" EntitySet="Exams" />
+            <End Role="Subject" EntitySet="Subjects" />
+          </AssociationSet>
+          <FunctionImport Name="iManageQuestion" ReturnType="Collection(ABCModel.iManageQuestion_Result)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Marks" Mode="In" Type="Int32" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+            <Parameter Name="CreatedDate" Mode="In" Type="DateTime" />
+            <Parameter Name="UpdatedBy" Mode="In" Type="String" />
+            <Parameter Name="UpdatedDate" Mode="In" Type="DateTime" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+            <Parameter Name="TopicID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GenerateRandomQuestionPaper" ReturnType="Collection(ABCModel.GenerateRandomQuestionPaper_Result)">
+            <Parameter Name="Flag" Mode="In" Type="String" />
+            <Parameter Name="NumberOfQuestions" Mode="In" Type="Int32" />
+            <Parameter Name="PaperTitle" Mode="In" Type="String" />
+            <Parameter Name="PaperDescription" Mode="In" Type="String" />
+            <Parameter Name="ExamName" Mode="In" Type="String" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UserInsertUpdate" ReturnType="Collection(ABCModel.UserInsertUpdate_Result)">
+            <Parameter Name="Action" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="PasswordHash" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="DateOfBirth" Mode="In" Type="DateTime" />
+            <Parameter Name="GenderId" Mode="In" Type="Int32" />
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="CountryId" Mode="In" Type="Int32" />
+            <Parameter Name="ProvinceId" Mode="In" Type="Int32" />
+            <Parameter Name="ZoneId" Mode="In" Type="Int32" />
+            <Parameter Name="DistrictId" Mode="In" Type="Int32" />
+            <Parameter Name="UserTypeId" Mode="In" Type="Int32" />
+            <Parameter Name="ProfilePicture" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Country_" EntityType="ABCModel.Country_" />
+          <EntitySet Name="Districts" EntityType="ABCModel.District" />
+          <EntitySet Name="Genders" EntityType="ABCModel.Gender" />
+          <EntitySet Name="Provinces_" EntityType="ABCModel.Provinces_" />
+          <EntitySet Name="UserTypes" EntityType="ABCModel.UserType" />
+          <EntitySet Name="Zones" EntityType="ABCModel.Zone" />
+          <AssociationSet Name="FK__Provinces__Count__0C50D423" Association="ABCModel.FK__Provinces__Count__0C50D423">
+            <End Role="Country_" EntitySet="Country_" />
+            <End Role="Provinces_" EntitySet="Provinces_" />
+          </AssociationSet>
+          <AssociationSet Name="FK__District__ZoneId__3EDC53F0" Association="ABCModel.FK__District__ZoneId__3EDC53F0">
+            <End Role="Zone" EntitySet="Zones" />
+            <End Role="District" EntitySet="Districts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zone__ProvinceId__2EA5EC27" Association="ABCModel.FK__Zone__ProvinceId__2EA5EC27">
+            <End Role="Provinces_" EntitySet="Provinces_" />
+            <End Role="Zone" EntitySet="Zones" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="ABCModel.User" />
+          <AssociationSet Name="FK__User__CountryId__17C286CF" Association="ABCModel.FK__User__CountryId__17C286CF">
+            <End Role="Country_" EntitySet="Country_" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__DistrictId__40C49C62" Association="ABCModel.FK__User__DistrictId__40C49C62">
+            <End Role="District" EntitySet="Districts" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__GenderId__1B9317B3" Association="ABCModel.FK__User__GenderId__1B9317B3">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__ProvinceId__18B6AB08" Association="ABCModel.FK__User__ProvinceId__18B6AB08">
+            <End Role="Provinces_" EntitySet="Provinces_" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__UserTypeId__1C873BEC" Association="ABCModel.FK__User__UserTypeId__1C873BEC">
+            <End Role="UserType" EntitySet="UserTypes" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__ZoneId__3FD07829" Association="ABCModel.FK__User__ZoneId__3FD07829">
+            <End Role="Zone" EntitySet="Zones" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <FunctionImport Name="iUserInsertUpdate" ReturnType="Collection(ABCModel.iUserInsertUpdate_Result)">
+            <Parameter Name="Action" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="PasswordHash" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="DateOfBirth" Mode="In" Type="DateTime" />
+            <Parameter Name="GenderId" Mode="In" Type="Int32" />
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="CountryId" Mode="In" Type="Int32" />
+            <Parameter Name="ProvinceId" Mode="In" Type="Int32" />
+            <Parameter Name="ZoneId" Mode="In" Type="Int32" />
+            <Parameter Name="DistrictId" Mode="In" Type="Int32" />
+            <Parameter Name="UserTypeId" Mode="In" Type="Int32" />
+            <Parameter Name="ProfilePicture" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sUserInsertUpdate" ReturnType="Collection(ABCModel.sUserInsertUpdate_Result)">
+            <Parameter Name="Action" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="PasswordHash" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="DateOfBirth" Mode="In" Type="DateTime" />
+            <Parameter Name="GenderId" Mode="In" Type="Int32" />
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="CountryId" Mode="In" Type="Int32" />
+            <Parameter Name="ProvinceId" Mode="In" Type="Int32" />
+            <Parameter Name="ZoneId" Mode="In" Type="Int32" />
+            <Parameter Name="DistrictId" Mode="In" Type="Int32" />
+            <Parameter Name="UserTypeId" Mode="In" Type="Int32" />
+            <Parameter Name="ProfilePicture" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uUserInsertUpdate" ReturnType="Collection(ABCModel.uUserInsertUpdate_Result)">
+            <Parameter Name="Action" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="PasswordHash" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="DateOfBirth" Mode="In" Type="DateTime" />
+            <Parameter Name="GenderId" Mode="In" Type="Int32" />
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="CountryId" Mode="In" Type="Int32" />
+            <Parameter Name="ProvinceId" Mode="In" Type="Int32" />
+            <Parameter Name="ZoneId" Mode="In" Type="Int32" />
+            <Parameter Name="DistrictId" Mode="In" Type="Int32" />
+            <Parameter Name="UserTypeId" Mode="In" Type="Int32" />
+            <Parameter Name="ProfilePicture" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dUserInsertUpdate" ReturnType="Collection(ABCModel.dUserInsertUpdate_Result)">
+            <Parameter Name="Action" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="PasswordHash" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="DateOfBirth" Mode="In" Type="DateTime" />
+            <Parameter Name="GenderId" Mode="In" Type="Int32" />
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="CountryId" Mode="In" Type="Int32" />
+            <Parameter Name="ProvinceId" Mode="In" Type="Int32" />
+            <Parameter Name="ZoneId" Mode="In" Type="Int32" />
+            <Parameter Name="DistrictId" Mode="In" Type="Int32" />
+            <Parameter Name="UserTypeId" Mode="In" Type="Int32" />
+            <Parameter Name="ProfilePicture" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UserAuthentication" ReturnType="Collection(String)">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="IsAuthenticated" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="aUserAuthentication" ReturnType="Collection(ABCModel.aUserAuthentication_Result)">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="IsAuthenticated" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sAddExam" ReturnType="Collection(ABCModel.sAddExam_Result)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="ExamName" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="uAddExam" ReturnType="Collection(ABCModel.uAddExam_Result)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="ExamName" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="dAddExam" ReturnType="Collection(ABCModel.dAddExam_Result)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="ExamName" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="iAddExam" ReturnType="Collection(ABCModel.iAddExam_Result)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="ExamName" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="fAddExam" ReturnType="Collection(ABCModel.fAddExam_Result)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="ExamName" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="iAddTopic" ReturnType="Collection(ABCModel.iAddTopic_Result)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="TopicID" Mode="In" Type="Int32" />
+            <Parameter Name="TopicName" Mode="In" Type="String" />
+            <Parameter Name="SubjectID" Mode="In" Type="Int32" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sAddTopic" ReturnType="Collection(ABCModel.sAddTopic_Result)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="TopicID" Mode="In" Type="Int32" />
+            <Parameter Name="TopicName" Mode="In" Type="String" />
+            <Parameter Name="SubjectID" Mode="In" Type="Int32" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="uAddTopic" ReturnType="Collection(ABCModel.uAddTopic_Result)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="TopicID" Mode="In" Type="Int32" />
+            <Parameter Name="TopicName" Mode="In" Type="String" />
+            <Parameter Name="SubjectID" Mode="In" Type="Int32" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="dAddTopic" ReturnType="Collection(ABCModel.dAddTopic_Result)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="TopicID" Mode="In" Type="Int32" />
+            <Parameter Name="TopicName" Mode="In" Type="String" />
+            <Parameter Name="SubjectID" Mode="In" Type="Int32" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="FnResponse" IsComposable="true" ReturnType="Collection(ABCModel.FnResponse_Result)">
+            <Parameter Name="Status" Mode="In" Type="String" />
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="Message" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetQuestionPaper" ReturnType="Collection(ABCModel.GetQuestionPaper_Result)">
+            <Parameter Name="PaperId" Mode="In" Type="Int32" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sAddSubject" ReturnType="Collection(ABCModel.sAddSubject_Result)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="SubjectID" Mode="In" Type="Int32" />
+            <Parameter Name="SubjectName" Mode="In" Type="String" />
+            <Parameter Name="ExamId" Mode="In" Type="Int32" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="iAddSubject" ReturnType="Collection(ABCModel.iAddSubject_Result)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="SubjectID" Mode="In" Type="Int32" />
+            <Parameter Name="SubjectName" Mode="In" Type="String" />
+            <Parameter Name="ExamId" Mode="In" Type="Int32" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="uAddSubject" ReturnType="Collection(ABCModel.uAddSubject_Result)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="SubjectID" Mode="In" Type="Int32" />
+            <Parameter Name="SubjectName" Mode="In" Type="String" />
+            <Parameter Name="ExamId" Mode="In" Type="Int32" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="dAddSubject" ReturnType="Collection(ABCModel.dAddSubject_Result)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="SubjectID" Mode="In" Type="Int32" />
+            <Parameter Name="SubjectName" Mode="In" Type="String" />
+            <Parameter Name="ExamId" Mode="In" Type="Int32" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="eAddSubject" ReturnType="Collection(ABCModel.eAddSubject_Result)">
+            <Parameter Name="Operation" Mode="In" Type="String" />
+            <Parameter Name="SubjectID" Mode="In" Type="Int32" />
+            <Parameter Name="SubjectName" Mode="In" Type="String" />
+            <Parameter Name="ExamId" Mode="In" Type="Int32" />
+            <Parameter Name="IsNepali" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          </EntityContainer>
+        <ComplexType Name="ManageQuestion_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="Int32" Name="Marks" Nullable="true" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="70" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="70" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="TopicID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="LoadDropdownList_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="300" />
+        </ComplexType>
+        <EntityType Name="Exam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExamName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CraetedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsNepali" Type="Boolean" />
+          <NavigationProperty Name="Subjects" Relationship="ABCModel.FK_Subjects_Exams" FromRole="Exam1" ToRole="Subject" />
+        </EntityType>
+        <Association Name="FK_Subjects_Exams">
+          <End Type="ABCModel.Exam" Role="Exam1" Multiplicity="0..1" />
+          <End Type="ABCModel.Subject" Role="Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exam1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="ExamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="iManageQuestion_Result">
+          <Property Type="String" Name="Result" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="GenerateRandomQuestionPaper_Result">
+          <Property Type="Int32" Name="PaperId" Nullable="true" />
+          <Property Type="Int32" Name="QuestionId" Nullable="true" />
+          <Property Type="Int32" Name="TopicId" Nullable="true" />
+          <Property Type="Int32" Name="SubjectId" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="ExamId" Nullable="true" />
+          <Property Type="Boolean" Name="IsNepali" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="UserInsertUpdate_Result">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="PasswordHash" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="UserType" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="DateOfBirth" Nullable="true" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Country" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProfilePicture" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <EntityType Name="Country_">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Provinces_" Relationship="ABCModel.FK__Provinces__Count__0C50D423" FromRole="Country_" ToRole="Provinces_" />
+          <NavigationProperty Name="Users" Relationship="ABCModel.FK__User__CountryId__17C286CF" FromRole="Country_" ToRole="User" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ZoneId" Type="Int32" />
+          <NavigationProperty Name="Zone" Relationship="ABCModel.FK__District__ZoneId__3EDC53F0" FromRole="District" ToRole="Zone" />
+          <NavigationProperty Name="Users" Relationship="ABCModel.FK__User__DistrictId__40C49C62" FromRole="District" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="ABCModel.FK__User__GenderId__1B9317B3" FromRole="Gender" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Provinces_">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CountryId" Type="Int32" />
+          <NavigationProperty Name="Country_" Relationship="ABCModel.FK__Provinces__Count__0C50D423" FromRole="Provinces_" ToRole="Country_" />
+          <NavigationProperty Name="Zones" Relationship="ABCModel.FK__Zone__ProvinceId__2EA5EC27" FromRole="Provinces_" ToRole="Zone" />
+          <NavigationProperty Name="Users" Relationship="ABCModel.FK__User__ProvinceId__18B6AB08" FromRole="Provinces_" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="ABCModel.FK__User__UserTypeId__1C873BEC" FromRole="UserType" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Zone">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ProvinceId" Type="Int32" />
+          <NavigationProperty Name="Districts" Relationship="ABCModel.FK__District__ZoneId__3EDC53F0" FromRole="Zone" ToRole="District" />
+          <NavigationProperty Name="Provinces_" Relationship="ABCModel.FK__Zone__ProvinceId__2EA5EC27" FromRole="Zone" ToRole="Provinces_" />
+          <NavigationProperty Name="Users" Relationship="ABCModel.FK__User__ZoneId__3FD07829" FromRole="Zone" ToRole="User" />
+        </EntityType>
+        <Association Name="FK__Provinces__Count__0C50D423">
+          <End Type="ABCModel.Country_" Role="Country_" Multiplicity="0..1" />
+          <End Type="ABCModel.Provinces_" Role="Provinces_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country_">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Provinces_">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__District__ZoneId__3EDC53F0">
+          <End Type="ABCModel.Zone" Role="Zone" Multiplicity="0..1" />
+          <End Type="ABCModel.District" Role="District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zone">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="ZoneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zone__ProvinceId__2EA5EC27">
+          <End Type="ABCModel.Provinces_" Role="Provinces_" Multiplicity="0..1" />
+          <End Type="ABCModel.Zone" Role="Zone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provinces_">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zone">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ProfilePicture" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="ProvinceId" Type="Int32" />
+          <Property Name="GenderId" Type="Int32" />
+          <Property Name="UserTypeId" Type="Int32" />
+          <Property Name="ZoneId" Type="Int32" />
+          <Property Name="DistrictId" Type="Int32" />
+          <NavigationProperty Name="Country_" Relationship="ABCModel.FK__User__CountryId__17C286CF" FromRole="User" ToRole="Country_" />
+          <NavigationProperty Name="District" Relationship="ABCModel.FK__User__DistrictId__40C49C62" FromRole="User" ToRole="District" />
+          <NavigationProperty Name="Gender" Relationship="ABCModel.FK__User__GenderId__1B9317B3" FromRole="User" ToRole="Gender" />
+          <NavigationProperty Name="Provinces_" Relationship="ABCModel.FK__User__ProvinceId__18B6AB08" FromRole="User" ToRole="Provinces_" />
+          <NavigationProperty Name="UserType" Relationship="ABCModel.FK__User__UserTypeId__1C873BEC" FromRole="User" ToRole="UserType" />
+          <NavigationProperty Name="Zone" Relationship="ABCModel.FK__User__ZoneId__3FD07829" FromRole="User" ToRole="Zone" />
+        </EntityType>
+        <Association Name="FK__User__CountryId__17C286CF">
+          <End Type="ABCModel.Country_" Role="Country_" Multiplicity="0..1" />
+          <End Type="ABCModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country_">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__DistrictId__40C49C62">
+          <End Type="ABCModel.District" Role="District" Multiplicity="0..1" />
+          <End Type="ABCModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__GenderId__1B9317B3">
+          <End Type="ABCModel.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="ABCModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__ProvinceId__18B6AB08">
+          <End Type="ABCModel.Provinces_" Role="Provinces_" Multiplicity="0..1" />
+          <End Type="ABCModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provinces_">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__UserTypeId__1C873BEC">
+          <End Type="ABCModel.UserType" Role="UserType" Multiplicity="0..1" />
+          <End Type="ABCModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__ZoneId__3FD07829">
+          <End Type="ABCModel.Zone" Role="Zone" Multiplicity="0..1" />
+          <End Type="ABCModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zone">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ZoneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="iUserInsertUpdate_Result">
+          <Property Type="String" Name="Result" Nullable="false" MaxLength="23" />
+        </ComplexType>
+        <ComplexType Name="sUserInsertUpdate_Result">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="PasswordHash" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="DateOfBirth" Nullable="true" />
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ProfilePicture" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="CountryId" Nullable="true" />
+          <Property Type="Int32" Name="ProvinceId" Nullable="true" />
+          <Property Type="Int32" Name="GenderId" Nullable="true" />
+          <Property Type="Int32" Name="UserTypeId" Nullable="true" />
+          <Property Type="Int32" Name="ZoneId" Nullable="true" />
+          <Property Type="Int32" Name="DistrictId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="uUserInsertUpdate_Result">
+          <Property Type="String" Name="Result" Nullable="false" MaxLength="23" />
+        </ComplexType>
+        <ComplexType Name="dUserInsertUpdate_Result">
+          <Property Type="String" Name="Result" Nullable="false" MaxLength="25" />
+        </ComplexType>
+        <ComplexType Name="aUserAuthentication_Result">
+          <Property Type="String" Name="Result" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="sAddExam_Result">
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="ExamName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="CraetedBy" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsNepali" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="uAddExam_Result">
+          <Property Type="String" Name="Result" Nullable="false" MaxLength="39" />
+        </ComplexType>
+        <ComplexType Name="dAddExam_Result">
+          <Property Type="String" Name="Result" Nullable="false" MaxLength="39" />
+        </ComplexType>
+        <ComplexType Name="iAddExam_Result">
+          <Property Type="String" Name="Result" Nullable="false" MaxLength="24" />
+        </ComplexType>
+        <ComplexType Name="fAddExam_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="ExamName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="CraetedBy" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsNepali" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="iAddTopic_Result">
+          <Property Type="String" Name="Result" Nullable="false" MaxLength="25" />
+        </ComplexType>
+        <ComplexType Name="sAddTopic_Result">
+          <Property Type="String" Name="TopicName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="SubjectName" Nullable="true" MaxLength="300" />
+        </ComplexType>
+        <ComplexType Name="uAddTopic_Result">
+          <Property Type="String" Name="Result" Nullable="false" MaxLength="41" />
+        </ComplexType>
+        <ComplexType Name="dAddTopic_Result">
+          <Property Type="String" Name="Result" Nullable="false" MaxLength="41" />
+        </ComplexType>
+        <ComplexType Name="FnResponse_Result">
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Message" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GetQuestionPaper_Result">
+          <Property Type="Int32" Name="PaperId" Nullable="true" />
+          <Property Type="Int32" Name="QuestionId" Nullable="true" />
+          <Property Type="Int32" Name="TopicId" Nullable="true" />
+          <Property Type="Int32" Name="SubjectId" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="ExamId" Nullable="true" />
+          <Property Type="Boolean" Name="IsNepali" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="iAddSubject_Result">
+          <Property Type="String" Name="Result" Nullable="false" MaxLength="27" />
+        </ComplexType>
+        <ComplexType Name="uAddSubject_Result">
+          <Property Type="String" Name="Result" Nullable="false" MaxLength="42" />
+        </ComplexType>
+        <ComplexType Name="dAddSubject_Result">
+          <Property Type="String" Name="Result" Nullable="false" MaxLength="42" />
+        </ComplexType>
+        <ComplexType Name="AddSubject_Result">
+          <Property Type="String" Name="SubjectName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="ExamName" Nullable="true" MaxLength="300" />
+        </ComplexType>
+        <ComplexType Name="sAddSubject_Result">
+          <Property Type="Int32" Name="SubjectID" Nullable="false" />
+          <Property Type="String" Name="SubjectName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="ExamName" Nullable="true" MaxLength="300" />
+          <Property Type="Boolean" Name="IsNepali" Nullable="true" />
+          <Property Type="Int32" Name="ExamId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="eAddSubject_Result">
+          <Property Type="Int32" Name="SubjectID" Nullable="false" />
+          <Property Type="String" Name="SubjectName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="ExamName" Nullable="true" MaxLength="300" />
+          <Property Type="Boolean" Name="IsNepali" Nullable="true" />
+          <Property Type="Int32" Name="ExamId" Nullable="true" />
+        </ComplexType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ABCModelStoreContainer" CdmEntityContainer="ABCEntities1">
+          <EntitySetMapping Name="Papers">
+            <EntityTypeMapping TypeName="ABCModel.Paper">
+              <MappingFragment StoreEntitySet="Paper">
+                <ScalarProperty Name="IsNepali" ColumnName="IsNepali" />
+                <ScalarProperty Name="PaperId" ColumnName="PaperId" />
+                <ScalarProperty Name="PaperTitle" ColumnName="PaperTitle" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="ABCModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="IsNepali" ColumnName="IsNepali" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Marks" ColumnName="Marks" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions1">
+            <EntityTypeMapping TypeName="ABCModel.Question1">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Marks" ColumnName="Marks" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="ABCModel.Subject">
+              <MappingFragment StoreEntitySet="Subjects">
+                <ScalarProperty Name="IsNepali" ColumnName="IsNepali" />
+                <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topics">
+            <EntityTypeMapping TypeName="ABCModel.Topic">
+              <MappingFragment StoreEntitySet="Topics">
+                <ScalarProperty Name="IsNepali" ColumnName="IsNepali" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+                <ScalarProperty Name="TopicName" ColumnName="TopicName" />
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionPapers">
+            <EntityTypeMapping TypeName="ABCModel.QuestionPaper">
+              <MappingFragment StoreEntitySet="QuestionPaper">
+                <ScalarProperty Name="IsNepali" ColumnName="IsNepali" />
+                <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PaperId" ColumnName="PaperId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="QuestionPaperQuestions" TypeName="ABCModel.QuestionPaperQuestions" StoreEntitySet="QuestionPaperQuestions">
+            <EndProperty Name="Paper">
+              <ScalarProperty Name="PaperId" ColumnName="PaperId" />
+            </EndProperty>
+            <EndProperty Name="Question">
+              <ScalarProperty Name="Id" ColumnName="QuestionId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="ManageQuestion" FunctionName="ABCModel.Store.ManageQuestion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.ManageQuestion_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Marks" ColumnName="Marks" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LoadDropdownList" FunctionName="ABCModel.Store.LoadDropdownList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.LoadDropdownList_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AddExam" FunctionName="ABCModel.Store.AddExam" />
+          <FunctionImportMapping FunctionImportName="AddSubject" FunctionName="ABCModel.Store.AddSubject" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.AddSubject_Result">
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="ExamName" ColumnName="ExamName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AddTopic" FunctionName="ABCModel.Store.AddTopic" />
+          <EntitySetMapping Name="Exams">
+            <EntityTypeMapping TypeName="ABCModel.Exam">
+              <MappingFragment StoreEntitySet="Exam">
+                <ScalarProperty Name="IsNepali" ColumnName="IsNepali" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CraetedBy" ColumnName="CraetedBy" />
+                <ScalarProperty Name="ExamName" ColumnName="ExamName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="iManageQuestion" FunctionName="ABCModel.Store.ManageQuestion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.iManageQuestion_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GenerateRandomQuestionPaper" FunctionName="ABCModel.Store.GenerateRandomQuestionPaper" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.GenerateRandomQuestionPaper_Result">
+                <ScalarProperty Name="PaperId" ColumnName="PaperId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+                <ScalarProperty Name="IsNepali" ColumnName="IsNepali" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UserInsertUpdate" FunctionName="ABCModel.Store.UserInsertUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.UserInsertUpdate_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Country_">
+            <EntityTypeMapping TypeName="ABCModel.Country_">
+              <MappingFragment StoreEntitySet="Country ">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Districts">
+            <EntityTypeMapping TypeName="ABCModel.District">
+              <MappingFragment StoreEntitySet="District">
+                <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="ABCModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provinces_">
+            <EntityTypeMapping TypeName="ABCModel.Provinces_">
+              <MappingFragment StoreEntitySet="Provinces ">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="ABCModel.UserType">
+              <MappingFragment StoreEntitySet="UserType">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zones">
+            <EntityTypeMapping TypeName="ABCModel.Zone">
+              <MappingFragment StoreEntitySet="Zone">
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ABCModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="iUserInsertUpdate" FunctionName="ABCModel.Store.UserInsertUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.iUserInsertUpdate_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sUserInsertUpdate" FunctionName="ABCModel.Store.UserInsertUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.sUserInsertUpdate_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uUserInsertUpdate" FunctionName="ABCModel.Store.UserInsertUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.uUserInsertUpdate_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="dUserInsertUpdate" FunctionName="ABCModel.Store.UserInsertUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.dUserInsertUpdate_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UserAuthentication" FunctionName="ABCModel.Store.UserAuthentication" />
+          <FunctionImportMapping FunctionImportName="aUserAuthentication" FunctionName="ABCModel.Store.UserAuthentication">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.aUserAuthentication_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sAddExam" FunctionName="ABCModel.Store.AddExam">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.sAddExam_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ExamName" ColumnName="ExamName" />
+                <ScalarProperty Name="CraetedBy" ColumnName="CraetedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsNepali" ColumnName="IsNepali" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uAddExam" FunctionName="ABCModel.Store.AddExam">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.uAddExam_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="dAddExam" FunctionName="ABCModel.Store.AddExam">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.dAddExam_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="iAddExam" FunctionName="ABCModel.Store.AddExam">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.iAddExam_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fAddExam" FunctionName="ABCModel.Store.AddExam">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.fAddExam_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ExamName" ColumnName="ExamName" />
+                <ScalarProperty Name="CraetedBy" ColumnName="CraetedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsNepali" ColumnName="IsNepali" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="iAddTopic" FunctionName="ABCModel.Store.AddTopic">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.iAddTopic_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sAddTopic" FunctionName="ABCModel.Store.AddTopic">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.sAddTopic_Result">
+                <ScalarProperty Name="TopicName" ColumnName="TopicName" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uAddTopic" FunctionName="ABCModel.Store.AddTopic">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.uAddTopic_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="dAddTopic" FunctionName="ABCModel.Store.AddTopic">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.dAddTopic_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FnResponse" FunctionName="ABCModel.Store.FnResponse">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.FnResponse_Result">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetQuestionPaper" FunctionName="ABCModel.Store.GetQuestionPaper">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.GetQuestionPaper_Result">
+                <ScalarProperty Name="PaperId" ColumnName="PaperId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+                <ScalarProperty Name="IsNepali" ColumnName="IsNepali" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sAddSubject" FunctionName="ABCModel.Store.AddSubject">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.sAddSubject_Result">
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="ExamName" ColumnName="ExamName" />
+                <ScalarProperty Name="IsNepali" ColumnName="IsNepali" />
+                <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="iAddSubject" FunctionName="ABCModel.Store.AddSubject">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.iAddSubject_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uAddSubject" FunctionName="ABCModel.Store.AddSubject">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.uAddSubject_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="dAddSubject" FunctionName="ABCModel.Store.AddSubject">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.dAddSubject_Result">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="eAddSubject" FunctionName="ABCModel.Store.AddSubject">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ABCModel.eAddSubject_Result">
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="ExamName" ColumnName="ExamName" />
+                <ScalarProperty Name="IsNepali" ColumnName="IsNepali" />
+                <ScalarProperty Name="ExamId" ColumnName="ExamId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,101 @@
+﻿
+
+@model ABC.eAddSubject_Result
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    #NepaliSubjectName, #ExamIdNepali {
+        font-family: 'Preeti', Arial, sans-serif;
+        font-size: 18px;
+    }
+</style>
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Subject</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group" style="margin-bottom: 0px;">
+            @Html.LabelFor(model => model.SubjectName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SubjectName, new { htmlAttributes = new { @class = "form-control", @id = "NepaliSubjectName", @Style = "display:none;" } })
+                @Html.EditorFor(model => model.SubjectName, new { htmlAttributes = new { @class = "form-control", @id = "EnglishSubjectName" } })
+                @Html.ValidationMessageFor(model => model.SubjectName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group" style="margin-bottom:0px;">
+            <div class="col-md-5"></div>
+            <div class="col-md-2">
+                @Html.Label("IsNepali ")
+                @Html.CheckBox("checkboxIsNepali", new { @id = "chIsNepali" })
+                @Html.HiddenFor(model => model.IsNepali)
+            </div>
+
+
+        </div>
+        <div class="form-group" style="margin-top:0px;">
+            @Html.LabelFor(model => model.ExamId, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                @Html.DropDownList("ExamId", ABC.Models.Dropdown.DropDownListData("ExamType", null, false), new { @class = "form-control" })
+                @Html.DropDownList("ExamId", ABC.Models.Dropdown.DropDownListData("ExamType", null, true), new { @class = "form-control", @id = "ExamIdNepali", @style = "display:none; font-size: 18px;" })
+
+
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            var checkval = $("#chIsNepali").is(":checked");
+            $("#IsNepali").val(checkval);
+            $("#chIsNepali").change(function () {
+                var checkboxval = $("#chIsNepali").is(":checked");
+                $("#IsNepali").val(checkboxval);
+
+                if ($(this).is(":checked")) {
+                    $("#NepaliSubjectName").show(); // Remove display: none;
+                    $("#EnglishSubjectName").hide();
+                    $("#ExamIdNepali").show(); // Remove display: none;
+                    $("#ExamId").hide();
+                } else {
+                    $("#EnglishSubjectName").show();
+                    $("#NepaliSubjectName").hide(); // Add display: none;
+                    $("#ExamId").show();
+                    $("#ExamIdNepali").hide();
+                }
+            });
+        });
+    </script>
+
+
+}
+
+

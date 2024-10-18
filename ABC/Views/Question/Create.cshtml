@@ -1,0 +1,233 @@
+﻿@model Question
+
+@{
+    ViewBag.Title = "Create";
+}
+<script src="~/Scripts/ABC.js"></script>
+<a href="~/fonts/Preeti Normal.otf"></a>
+
+
+<style>
+
+
+    #NepaliName, #ExamIdNepali, #SubjectTypeNepali {
+        font-family: 'Preeti', Arial, sans-serif;
+        font-size: 20px;
+    }
+</style>
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group" style="margin-bottom:0px;">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @id = "NepaliName", @style = "display:none;" } })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @id = "EnglishName" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+            </div>
+
+
+        </div>
+        <div class="form-group" style="margin-bottom:0px;">
+            <div class="col-md-5">
+
+            </div>
+
+            <div class="col-md-2">
+
+                @Html.Label("IsNepali ")
+                @Html.CheckBox("checkboxIsNepali", new { @id = "chIsNepali" })
+                @Html.HiddenFor(model => model.IsNepali)
+            </div>
+        </div>
+
+        <div class="form-group" style="display:none">
+            @Html.LabelFor(model => model.Marks, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Marks, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Marks, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group" style="margin-top:0px;">
+            @Html.Label("Exam", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ExamId", ABC.Models.Dropdown.DropDownListData("ExamType", null, false), new { @class = "form-control" })
+                @Html.DropDownList("ExamId", ABC.Models.Dropdown.DropDownListData("ExamType", null, true), new { @class = "form-control", @id = "ExamIdNepali", @style = "display:none;" })
+
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Subject", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Subject", ABC.Models.Dropdown.DropDownListData("SubjectType", null, false), new { @class = "form-control" })
+                @Html.DropDownList("Subject", ABC.Models.Dropdown.DropDownListData("SubjectType", null, true), new { @class = "form-control", @id = "SubjectTypeNepali", @style = "display:none;" })
+
+                @Html.ValidationMessage("Subject", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Topic", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Topic", ABC.Models.Dropdown.DropDownListData("TopicType", null, false), new { @class = "form-control" })
+                @Html.DropDownList("Topic", ABC.Models.Dropdown.DropDownListData("TopicType", null, true), new { @class = "form-control", @id = "TopicTypeNepali", @style = "display:none;" })
+
+                @Html.ValidationMessage("Topic", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+            $('#ExamId').change(function () {
+
+
+                var Exam = $('#ExamId').val();
+
+                var searchText = "SubjectType";
+                var IsNepali = $("#chIsNepali").is(":checked");
+
+                GetDropdownList(Exam, "#Subject", searchText, IsNepali);
+
+            });
+        });
+
+    </script>
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+            $('#ExamIdNepali').change(function () {
+
+                debugger;
+
+                var NepaliExam = $("#ExamIdNepali").val();
+                var searchText = "SubjectType";
+                var IsNepali = $("#chIsNepali").is(":checked");
+                GetDropdownList(NepaliExam, "#SubjectTypeNepali", searchText, IsNepali);
+
+            });
+        });
+
+    </script>
+
+    <script type="text/javascript">
+
+
+        $(function () {
+
+            $('#Subject').change(function () {
+                var Subject = $('#Subject').val();
+                var searchText = "TopicType";
+                var IsNepali = $("#chIsNepali").is(":checked");
+                GetDropdownList(Subject, "#Topic", searchText, IsNepali);
+            });
+        });
+
+
+
+    </script>
+
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+            $('#SubjectTypeNepali').change(function () {
+
+                debugger;
+
+                var NepaliSubject = $("#SubjectTypeNepali").val();
+                var searchText = "TopicType";
+                var IsNepali = $("#chIsNepali").is(":checked");
+                GetDropdownList(NepaliSubject, "#TopicTypeNepali", searchText, IsNepali);
+
+            });
+        });
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            var checkval = $("#chIsNepali").is(":checked");
+            $("#IsNepali").val(checkval);
+            $("#chIsNepali").change(function () {
+                var isNepaliVAl = $("#chIsNepali").is(":checked");
+                $("#IsNepali").val(isNepaliVAl);
+                if ($(this).is(":checked")) {
+                    $("#NepaliName").show(); // Remove display: none;
+                    $("#EnglishName").hide();
+                    $("#ExamIdNepali").show(); // Remove display: none;
+                    $("#ExamId").hide();
+                    $("#SubjectTypeNepali").show(); // Remove display: none;
+                    $("#Subject").hide();
+                    $("#TopicTypeNepali").show(); // Remove display: none;
+                    $("#Topic").hide();
+
+                } else {
+                    $("#EnglishName").show();
+                    $("#NepaliName").hide(); // Add display: none;
+                    $("#ExamId").show();
+                    $("#ExamIdNepali").hide(); // Add display: none;
+
+
+
+                    $("#SubjectTypeNepali").hide(); // Remove display: none;
+                    $("#Subject").show();
+                    $("#TopicTypeNepali").hide(); // Remove display: none;
+                    $("#Topic").show();
+                }
+            });
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#chIsNepali").change(function () {
+                if ($(this).is(":checked")) {
+                    $("#ExamIdNepali").show(); // Remove display: none;
+                    $("#ExamId").hide();
+                } else {
+                    $("#ExamId").show();
+                    $("#ExamIdNepali").hide(); // Add display: none;
+                }
+            });
+        });
+    </script>
+}
+
+
+

@@ -1,0 +1,90 @@
+﻿@model ABC.QuestionPaper
+
+@{
+    ViewBag.Title = "GetQuestionPaper";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetQuestionPaper</h2>
+<style>
+
+
+    #ExamIdNepali {
+        font-family: 'Preeti', Arial, sans-serif;
+        font-size: 20px;
+    }
+</style>
+
+@using (Html.BeginForm("GetQuestionPaper", "QuestionPaper", FormMethod.Post, new { id = "generateForm", target = "_blank" }))
+{
+
+    <div class="form-group">
+        @Html.DropDownList("PaperID", ABC.Models.Dropdown.DropDownListData("PaperType", null, false), new { @class = "form-control" })
+        @Html.DropDownList("Paper", ABC.Models.Dropdown.DropDownListData("PaperType", null, true), new { @class = "form-control", @id = "PaperIdNepali", @style = "display:none; font-size: 18px;" })
+        @Html.TextBoxFor(model => model.PaperId)
+    </div>
+
+    <div class="form-group">
+        IsNepali
+        @Html.CheckBox("checkboxIsNepali", new { @id = "chIsNepali" })
+        @Html.HiddenFor(model => model.IsNepali)
+    </div>
+    <button type="submit" class="btn btn-success" id="generateButton">Generate Paper</button>
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            var checkval = $("#chIsNepali").is(":checked");
+            $("#IsNepali").val(checkval);
+
+
+
+
+            $("#chIsNepali").change(function () {
+
+                var checkval = $("#chIsNepali").is(":checked");
+                $("#IsNepali").val(checkval);
+                if ($(this).is(":checked")) {
+                    $("#PaperIdNepali").show(); // Remove display: none;
+                    $("#PaperID").hide();
+                }
+                else {
+                    $("#PaperIdNepali").hide(); // Remove display: none;
+                    $("#PaperID").show();
+                }
+            });
+
+
+
+           
+        });
+
+    </script>
+    <script>
+       
+            $("#PaperID").change(function () {
+                debugger;
+                var i = $("#PaperID").val();
+                var inti = parseInt(i);
+                $("#PaperId").val('');
+                $("#PaperId").val(inti);
+            });
+      
+    </script>
+    <script>
+      
+            $("#PaperIdNepali").change(function () {
+                debugger;
+                var j = $("#PaperIdNepali").val();
+                var intj = parseInt(j);
+                var k = parseInt("0");
+                $("#PaperId").val(k);
+                $("#PaperId").val(intj);
+            });
+     
+    </script>
+}

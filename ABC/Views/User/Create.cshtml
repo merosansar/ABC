@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+@model List<ABC.User>
+@{
+    Layout = null; // Disable layout for this page
+}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #212529;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .card.card-registration {
+            margin-top: 0 !important;
+            padding-top: 0px !important;
+            padding-bottom: 0 !important;
+        }
+
+        .card-body {
+            padding: 2rem !important;
+        }
+    </style>
+</head>
+<body>
+
+    @using (Html.BeginForm("Create", "User", FormMethod.Post))
+    {
+        <section class="h-100">
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col">
+                        <div class="card card-registration my-4">
+                            <div class="row g-0" style="height:53rem;">
+                                <div class="col-xl-6 d-none d-xl-block">
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                                         alt="Sample photo" class="img-fluid"
+                                         style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; height: 53rem;" />
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="card-body p-md-5 text-black">
+                                        <h3 class="mb-5 text-uppercase">Sign Up</h3>
+
+                                        <!-- Your form content here -->
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+                                                <div data-mdb-input-init class="form-outline">
+                                                    <input type="text" id="FirstName" class="form-control form-control-lg" name="FirstName" autocomplete="off" required />
+                                                    <label class="form-label" for="FirstName">First name</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div data-mdb-input-init class="form-outline">
+                                                    <input type="text" id="LastName" class="form-control form-control-lg" name="LastName" autocomplete="off" required />
+                                                    <label class="form-label" for="LastName">Last name</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+                                                <div data-mdb-input-init class="form-outline">
+                                                    <input type="text" id="Username" class="form-control form-control-lg" name="Username" autocomplete="off" required />
+                                                    <label class="form-label" for="Username">User Name</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div data-mdb-input-init class="form-outline">
+                                                    <input type="password" id="PasswordHash" class="form-control form-control-lg" name="PasswordHash" autocomplete="off" required />
+                                                    <label class="form-label" for="PasswordHash">Password</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+                                                <div data-mdb-input-init class="form-outline">
+                                                    <input type="text" id="PhoneNumber" class="form-control form-control-lg" name="PhoneNumber" autocomplete="off" required />
+                                                    <label class="form-label" for="PhoneNumber">Phone Number</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div data-mdb-input-init class="form-outline">
+                                                    <input type="text" id="Email" class="form-control form-control-lg" name="Email" autocomplete="off" required />
+                                                    <label class="form-label" for="Email">Email ID</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+                                                @*<div data-mdb-input-init class="form-outline">
+                                                    <input type="text" id="form3Example1m1" class="form-control form-control-lg" />
+                                                    <label class="form-label" for="form3Example1m1">Country</label>*@
+
+                                                @Html.DropDownList("CountryId", ABC.Models.Dropdown.DropDownListData("CountryType", null, false), new { @class = "form-control" })
+
+
+                                                @*</div>*@
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                @*<div data-mdb-input-init class="form-outline">
+                                                        <input type="password" id="form3Example1n1" class="form-control form-control-lg" />
+                                                        <label class="form-label" for="form3Example1n1">Province</label>
+                                                    </div>*@
+                                                @Html.DropDownList("ProvinceId", ABC.Models.Dropdown.DropDownListData("ProvinceType", null, false), new { @class = "form-control" })
+
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+                                                @*<div data-mdb-input-init class="form-outline">
+                                                        <input type="text" id="form3Example1m1" class="form-control form-control-lg" />
+                                                        <label class="form-label" for="form3Example1m1">Zone</label>
+                                                    </div>*@
+                                                @Html.DropDownList("ZoneId", ABC.Models.Dropdown.DropDownListData("ZoneType", null, false), new { @class = "form-control" })
+
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                @*<div data-mdb-input-init class="form-outline">
+                                                        <input type="password" id="form3Example1n1" class="form-control form-control-lg" />
+                                                        <label class="form-label" for="form3Example1n1">District</label>
+                                                    </div>*@
+                                                @Html.DropDownList("DistrictId", ABC.Models.Dropdown.DropDownListData("DistrictType", null, false), new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <input type="text" id="Address" class="form-control form-control-lg" name="Address" autocomplete="off" />
+                                            <label class="form-label" for="Address">Address</label>
+                                        </div>
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <input type="text" id="DateOfBirth" class="form-control form-control-lg" required name="DateOfBirth" autocomplete="off" />
+                                            <label class="form-label" for="DateOfBirth">DOB</label>
+                                        </div>
+
+                                        <div class="d-md-flex justify-content-start align-items-center mb-2 py-2">
+
+                                            <h6 class="mb-0 me-4">Gender: </h6>
+
+                                            <div class="form-check form-check-inline mb-0 me-4">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
+                                                       value="option1" autocomplete="off" />
+                                                <label class="form-check-label" for="femaleGender">Female</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline mb-0 me-4">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
+                                                       value="option2" autocomplete="off" />
+                                                <label class="form-check-label" for="maleGender">Male</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline mb-0">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
+                                                       value="option3" autocomplete="off" />
+                                                <label class="form-check-label" for="otherGender">Other</label>
+                                            </div>
+
+                                        </div>
+
+
+
+
+                                        <!-- Dropdown -->
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+
+
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                @*<div class="dropdown">
+                                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+                                                            User Type
+                                                        </button>
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            <li><a class="dropdown-item" href="#">Administrators</a></li>
+                                                            <li><a class="dropdown-item" href="#">Students</a></li>
+                                                        </ul>
+                                                    </div>*@
+                                            </div>
+                                        </div>
+                                        <!-- End of Dropdown -->
+                                        <!-- More form fields -->
+                                        <div class="row">
+                                            <!-- Add more form fields here -->
+                                        </div>
+
+                                        <!-- Submit Button -->
+                                        <div class="d-flex justify-content-end pt-3">
+                                            <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-light btn-lg">Reset all</button>
+                                            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-lg ms-2">Sign Up</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- MDB JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+    <script src="~/Scripts/ABC.js"></script>
+
+    <script>
+        // Ensure jQuery is loaded and ready
+        $(document).ready(function () {
+            // Attach event handler to the change event of #CountryId
+            $('#CountryId').change(function () {
+                // Retrieve the selected value of CountryId
+                var countryId = $(this).val();
+                console.log("Selected CountryId: " + countryId);
+
+                // Call GetDropdownList function with the selected countryId
+                GetDropdownList(countryId, "#ProvinceId", "ProvinceType", false);
+            });
+        });
+    </script>
+    <script>
+        // Ensure jQuery is loaded and ready
+        $(document).ready(function () {
+            // Attach event handler to the change event of #CountryId
+            $('#ProvinceId').change(function () {
+                // Retrieve the selected value of CountryId
+                var ProvinceId = $(this).val();
+                console.log("Selected ProvinceId: " + ProvinceId);
+
+                // Call GetDropdownList function with the selected countryId
+                GetDropdownList(ProvinceId, "#ZoneId", "ZoneType", false);
+            });
+        });
+    </script>
+    <script>
+        // Ensure jQuery is loaded and ready
+        $(document).ready(function () {
+            // Attach event handler to the change event of #CountryId
+            $('#ZoneId').change(function () {
+                // Retrieve the selected value of CountryId
+                var ZoneId = $(this).val();
+                console.log("Selected ZoneId: " + ZoneId);
+
+                // Call GetDropdownList function with the selected countryId
+                GetDropdownList(ZoneId, "#DistrictId", "DistrictType", false);
+            });
+        });
+    </script>
+</body>
+</html>
+
